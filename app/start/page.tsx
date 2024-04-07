@@ -31,7 +31,7 @@ const Page = () => {
             <div className={styles.border}></div>
           </div>
           {Array.from({ length: 6 }).map((_, ind) => (
-            <div className={styles.rs} style={{ transform: `rotate(${ind * 60}deg)` }}>&#8377;</div>
+            <div key={ind} className={styles.rs} style={{ transform: `rotate(${ind * 60}deg)` }}>&#8377;</div>
           ))}
         </div>
         <div className={styles.mainHeading}>Crorepati</div>
