@@ -1,24 +1,28 @@
 'use client'
 
-import { cilArrowRight, cilCart, cilClone, cilTrash } from '@coreui/icons';
+import { cilArrowRight, cilCart, cilTrash } from '@coreui/icons';
 import CIcon from '@coreui/icons-react';
 import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from './lib/hooks';
+import { useAppDispatch } from './lib/hooks';
 import { addPlayers } from './lib/features/players/playersSlice';
 import { useRouter } from 'next/navigation';
 import { LifeInterface, ScoresInterface } from './lib/definitions';
 import { initScores } from './lib/features/scores/scoresSlice';
 import { initLife } from './lib/features/life/lifeSlice';
+// @ts-ignore
+import useSound from 'use-sound'
 
 export default function Page() {
   const [players, setPlayers] = useState<string[]>(['Auser1', 'Buser2', 'Cuser3']);
   const [selectedPlayer, setSelectedPlayer] = useState<string>('');
   const [player, setPlayer] = useState<string>('');
   const [joining, setJoining] = useState<boolean>(false);
-  
+
   const dispatch = useAppDispatch();
   // const reduxPlayers = useAppSelector(state => state.players.value);
   // const reduxRoom = useAppSelector(state => state.room.value);
+  const [playIntro, { stop: stopIntro }] = useSound('/intro.mp3');
+
 
   const router = useRouter();
 
@@ -40,7 +44,7 @@ export default function Page() {
       return updatedState;
     });
   }
-  
+
   const handleSelectPlayer = (val: string) => {
     if (selectedPlayer === val) {
       setSelectedPlayer('');
@@ -80,6 +84,7 @@ export default function Page() {
       });
       dispatch(initScores(scores));
       dispatch(initLife(life));
+      playIntro();
       router.push('/start');
     }
   }
@@ -95,7 +100,7 @@ export default function Page() {
             Player
           </label>
           <div className='flex items-center rounded-md bg-white focus-within:ring-2 focus-within:ring-blue-500'>
-            <input style={{textTransform: 'uppercase'}} type='text' className='rounded-md p-1 px-3 text-center focus-visible:outline-none text-uppercase' id='player' name='player' value={player} onChange={handleChange} />
+            <input style={{ textTransform: 'uppercase' }} type='text' className='rounded-md p-1 px-3 text-center focus-visible:outline-none text-uppercase' id='player' name='player' value={player} onChange={handleChange} />
             <CIcon className='h-8 w-8 p-2 rounded-sm cursor-pointer hover:bg-blue-100 active:bg-blue-200' icon={cilCart} onClick={addPlayer} />
           </div>
         </div>
@@ -111,7 +116,7 @@ export default function Page() {
             <CIcon className='h-8 w-8 p-2 rounded-sm cursor-pointer hover:bg-blue-100 active:bg-blue-200' icon={cilClone} />
           </div>
         </div> */}
-        <button className='flex p-1 px-3 justify-between items-center rounded-md bg-blue-800 text-white hover:bg-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 active:bg-blue-700 aria-disabled:cursor-not-allowed aria-disabled:opacity-50' aria-disabled={joining}  onClick={joinGame}>
+        <button className='flex p-1 px-3 justify-between items-center rounded-md bg-blue-800 text-white hover:bg-blue-900 focus-visible:outline-2 focus-visible:outline-offset-2 active:bg-blue-700 aria-disabled:cursor-not-allowed aria-disabled:opacity-50' aria-disabled={joining} onClick={joinGame}>
           Join<CIcon className='h-5 w-5' icon={cilArrowRight} />
         </button>
       </div>
@@ -123,7 +128,7 @@ export default function Page() {
           {players.length ?
             players.map((val, ind) => (
               <div key={ind} className='flex items-center relative'>
-                <CIcon 
+                <CIcon
                   className={`h-8 w-8 bg-red-200 rounded-md cursor-pointer p-2 ${selectedPlayer === val ? '' : 'hidden'}`} icon={cilTrash}
                   onClick={() => removePlayer(val)}
                 />

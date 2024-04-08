@@ -3,14 +3,20 @@ import { lusitana } from "./font";
 
 export default function ResultCard({
   title,
-  data
+  data,
+  isWinner,
 }: {
   title: string;
   data: ScoreInterface;
+  isWinner: boolean;
 }) {
 
   return (
-    <div className="flex w-1/6 flex-col gap-2 rounded-xl bg-gray-100 p-4 shadow-sm">
+    <div className="flex relative w-1/6 flex-col gap-2 rounded-xl bg-gray-100 p-4 shadow-sm">
+      <img src="/John-Cena.png"
+        height={10}
+        style={{zIndex: '1'}}
+        className={`absolute -top-10 -right-20 ${isWinner ? '' : 'hidden'}`}/>
       <div className="flex p-4">
         <h3 className="ml-2 text-sm font-medium">{title}</h3>
       </div>

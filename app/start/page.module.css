@@ -1,10 +1,16 @@
 .logo {
-  height: 350px;
-  width: 350px;
-  position: relative;
+  height: 400px;
+  width: 400px;
+  padding: 30px;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  animation: popOut 6s ease-in-out forwards;
 }
 
 .round {
@@ -91,5 +97,17 @@
 @keyframes rotate {
   100% {
     transform: rotateZ(2turn);
+  }
+}
+
+@keyframes popOut {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
   }
 }
