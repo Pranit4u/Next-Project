@@ -557,5 +557,36 @@ export const questionsData: QuestionInterface[] = [
       { text: "Doctor", correct: false },
       { text: "Teacher", correct: false }
     ]
-  }
+  },
+  {
+    id: 43,
+    question: "Which movie features the line: 'We mustn't be afraid to dream a little bigger, darling'?",
+    options: [
+        { text: "Inception", correct: true },
+        { text: "Interstellar", correct: false },
+        { text: "The Martian", correct: false },
+        { text: "Gravity", correct: false }
+    ]
+},
+{
+    id: 44,
+    question: "Which movie features the line: 'Do not go gentle into that good night'?",
+    options: [
+        { text: "Interstellar", correct: true },
+        { text: "Inception", correct: false },
+        { text: "The Martian", correct: false },
+        { text: "Gravity", correct: false }
+    ]
+},
+{
+    id: 45,
+    question: "Which movie features the line: 'I'm going to have to science the s*** out of this'?",
+    options: [
+        { text: "The Martian", correct: true },
+        { text: "Inception", correct: false },
+        { text: "Interstellar", correct: false },
+        { text: "Gravity", correct: false }
+    ]
+}
+
 ];
