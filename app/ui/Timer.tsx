@@ -3,7 +3,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 export default function Timer({ setTimeup, timer, setTimer, timePause }: { setTimeup: any, timer: number, setTimer: Dispatch<SetStateAction<number>>, timePause: boolean}) {
-  // const [timer, setTimer] = useState(15);
 
   useEffect(() => {
     if (timePause) return;

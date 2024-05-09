@@ -37,7 +37,7 @@ const QuestionPage = ({ currentPlayer, setCurrentPlayer }: { currentPlayer: stri
       const playerIndex = currNumber % players.length - 1;
       setCurrentPlayer(players.at(playerIndex) ?? '');
       setSelectedOption(0);
-      setTimer(15);
+      setTimer(30);
       setTimeup(false);
     } else {
       router.replace('/result');
