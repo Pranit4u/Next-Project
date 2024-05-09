@@ -17,7 +17,7 @@ const QuestionPage = ({ currentPlayer, setCurrentPlayer }: { currentPlayer: stri
   const [currNumber, setCurrNumber] = useState<number>(1);
   const [timeup, setTimeup] = useState<boolean>(false);
   const [seletedOption, setSelectedOption] = useState<number>(0);
-  const [timer, setTimer] = useState<number>(15);
+  const [timer, setTimer] = useState<number>(30);
   const [timePause, setTimePause] = useState<boolean>(false);
 
   const players = useAppSelector(state => state.players.value);
